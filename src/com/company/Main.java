@@ -14,12 +14,12 @@ public class Main {
     private enum StackLocation{IN, OUT;}
 
     public static void main(String[] args) {
-//        String equation = "(3+2)^2^2";
-//        List<String> postfixForm = convertToPostfix(equation);
-//        double result = evaluatePostfix(postfixForm);
-//        System.out.println(equation + " = " + result);
-//
-//        steps.forEach(System.out::println);
+        String equation = "(3+2)^2^2";
+        List<String> postfixForm = convertToPostfix(equation);
+        double result = evaluatePostfix(postfixForm);
+        System.out.println(equation + " = " + result);
+
+        steps.forEach(System.out::println);
     }
 
     public static boolean isOperator(char entity){
