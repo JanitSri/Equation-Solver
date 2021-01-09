@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="AlgebraSolver:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AlgebraSolver_jar</output-path>
+    <root id="archive" name="AlgebraSolver.jar">
+      <element id="module-output" name="AlgebraSolver" />
+    </root>
+  </artifact>
+</component>

@@ -1,8 +1,10 @@
 package com.company;
 
-
-@SuppressWarnings("ConstantConditions")
 public class OperationMap {
+
+    /**
+     * Enum representing the available operations of the program
+     */
     public enum Operation{
         ADD("+"),
         SUBTRACT("-"),
@@ -26,9 +28,18 @@ public class OperationMap {
         }
     }
 
-    static double getOperationResult(String operand1, String operand2, String operator){
-        double a = Double.parseDouble(operand1);
-        double b = Double.parseDouble(operand2);
+    /**
+     *
+     * Performs an operation based on the operands and operator passed in.
+     *
+     * @param leftOperand  the left operand
+     * @param rightOperand the right operand
+     * @param operator     the operator used by the Operation enum
+     * @return             the result of the operation
+     */
+    static double getOperationResult(String leftOperand, String rightOperand, String operator){
+        double a = Double.parseDouble(leftOperand);
+        double b = Double.parseDouble(rightOperand);
 
         switch(Operation.getOperatorFromString(operator)){
             case ADD:
