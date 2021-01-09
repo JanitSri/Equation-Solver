@@ -14,6 +14,9 @@ public class Main {
     static List<String> steps = new ArrayList<>();
 
     public static void main(String[] args) {
+        System.out.print("\033[H\033[2J"); // clear the screen
+        System.out.flush();
+
         Console.getHeader();
         Console.getSubHeader();
 

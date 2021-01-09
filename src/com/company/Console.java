@@ -12,7 +12,7 @@ public class Console {
     private static final String RED_BOLD = "\033[1;31m";
     private static final String CYAN_BOLD = "\033[1;36m";
     private static final String PURPLE_BOLD = "\033[1;35m";
-    private static final String BLUE_BOLD = "\033[1;34m";
+    private static final String YELLOW_BOLD = "\033[1;33m"; // YELLOW
     private static final String YELLOW_BACKGROUND_BRIGHT = "\033[0;103m";
 
 
@@ -63,7 +63,7 @@ public class Console {
      * @param steps the steps taken to evaluate the equation
      */
     public static void stepsOutput(List<String> steps){
-        System.out.println(CYAN_BOLD + "\t<<< Operation Steps >>>");
+        System.out.println(CYAN_BOLD);
         for(String step: steps){
             System.out.printf("%s%n", step);
         }
@@ -77,7 +77,7 @@ public class Console {
      * @param solution the solution for the equation
      */
     public static void finalEquationOutput(String equation, double solution){
-        System.out.println("\t" + BLUE_BOLD + equation + " = " + String.format("%.2f", solution));
+        System.out.println("\t" + YELLOW_BOLD + equation + " = " + String.format("%.2f", solution));
         System.out.println(ANSI_RESET);
     }
 

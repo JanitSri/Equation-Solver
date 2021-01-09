@@ -10,4 +10,6 @@
     * operand operand operator
     * example: ab+  
 
+<img src="./screenshot.png" alt="program_screenshot" width="450" height="400"/>
+
 
