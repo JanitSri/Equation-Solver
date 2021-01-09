@@ -9,29 +9,54 @@ public class Main {
     static final Map<Character, Integer> inPrecedence = PrecedenceMap.INSIDE_STACK_PRECEDENCE;
     static final Map<Character, Integer> outPrecedence = PrecedenceMap.OUTSIDE_STACK_PRECEDENCE;
 
+    private enum StackLocation{IN, OUT}
+
     static List<String> steps = new ArrayList<>();
 
-    private enum StackLocation{IN, OUT;}
-
     public static void main(String[] args) {
-        String equation = "(3+2)^2^2";
-        List<String> postfixForm = convertToPostfix(equation);
-        double result = evaluatePostfix(postfixForm);
-        System.out.println(equation + " = " + result);
+        Console.getHeader();
+        Console.getSubHeader();
 
-        steps.forEach(System.out::println);
+        String equation = Console.getInput();
+
+        while(!equation.equals("q")){
+            List<String> postfixForm = convertToPostfix(equation);
+            double solution = evaluatePostfix(postfixForm);
+            Console.stepsOutput(steps);
+            Console.finalEquationOutput(equation, solution);
+
+            steps.clear();
+            equation = Console.getInput();
+        }
+        Console.goodBye();
     }
 
+    /**
+     * Check if passed in entity is an operator or not
+     * @param entity operator or operand
+     * @return       true if operator, false if operand
+     */
     public static boolean isOperator(char entity){
         return outPrecedence.getOrDefault(entity, null) != null;
     }
 
+    /**
+     * Gets the precedence of the operator, used for associativity
+     * @param operator      the operator to check for precedence
+     * @param stackLocation enum representing if the operator is in the stack (StackLocation.IN) or not (StackLocation.IN)
+     * @return the precedence of the operator
+     */
     public static int getPrecedence(String operator, StackLocation stackLocation){
         char checkOperator = operator.charAt(0);
         return stackLocation == StackLocation.IN ?
                 inPrecedence.getOrDefault(checkOperator, null) : outPrecedence.getOrDefault(checkOperator, null);
     }
 
+    /**
+     * Converts the equation (infix form) to the postfix form of the equation
+     * @param equation the equation that was entered by the user
+     * @return         list of the operands and operators in postfix form
+     */
     public static List<String> convertToPostfix(String equation){
 
         LinkedListStack<String> stack = new LinkedListStack<>();
@@ -78,6 +103,11 @@ public class Main {
         return postfixList;
     }
 
+    /**
+     * Evaluates the equation in postfix form
+     * @param postfixEquation the postfix form of the equation
+     * @return                the solution to the equation
+     */
     private static double evaluatePostfix(List<String> postfixEquation) {
         LinkedListStack<String> stack = new LinkedListStack<>();
 
@@ -91,9 +121,9 @@ public class Main {
                 double operationResult = OperationMap.getOperationResult(leftOperand, rightOperand, entity);
                 stack.push(String.valueOf(operationResult));
 
-                String step = String.format("%.2f", Double.parseDouble(leftOperand)) + " "
+                String step = String.format("%8s", String.format("%.2f", Double.parseDouble(leftOperand))) + " "
                         + entity + " " + String.format("%.2f", Double.parseDouble(rightOperand))
-                        + "\t(" + String.format("%.2f", operationResult) + ")";
+                        + String.format("%5s", "(") + String.format("%.2f", operationResult) + ")";
                 steps.add(step);
             }
         }
