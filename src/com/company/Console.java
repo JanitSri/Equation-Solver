@@ -12,7 +12,7 @@ public class Console {
     private static final String RED_BOLD = "\033[1;31m";
     private static final String CYAN_BOLD = "\033[1;36m";
     private static final String PURPLE_BOLD = "\033[1;35m";
-    private static final String YELLOW_BOLD = "\033[1;33m"; // YELLOW
+    private static final String YELLOW_BOLD = "\033[1;33m";
     private static final String YELLOW_BACKGROUND_BRIGHT = "\033[0;103m";
 
 
