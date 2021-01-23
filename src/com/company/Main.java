@@ -6,9 +6,6 @@ import java.util.Map;
 
 public class Main {
 
-    static final Map<Character, Integer> inPrecedence = PrecedenceMap.INSIDE_STACK_PRECEDENCE;
-    static final Map<Character, Integer> outPrecedence = PrecedenceMap.OUTSIDE_STACK_PRECEDENCE;
-
     private enum StackLocation{IN, OUT}
 
     static List<String> steps = new ArrayList<>();
@@ -40,7 +37,7 @@ public class Main {
      * @return       true if operator, false if operand
      */
     public static boolean isOperator(char entity){
-        return outPrecedence.getOrDefault(entity, null) != null;
+        return PrecedenceMap.OUTSIDE_STACK_PRECEDENCE.getOrDefault(entity, null) != null;
     }
 
     /**
@@ -52,7 +49,8 @@ public class Main {
     public static int getPrecedence(String operator, StackLocation stackLocation){
         char checkOperator = operator.charAt(0);
         return stackLocation == StackLocation.IN ?
-                inPrecedence.getOrDefault(checkOperator, null) : outPrecedence.getOrDefault(checkOperator, null);
+                PrecedenceMap.INSIDE_STACK_PRECEDENCE.getOrDefault(checkOperator, null) :
+                PrecedenceMap.OUTSIDE_STACK_PRECEDENCE.getOrDefault(checkOperator, null);
     }
 
     /**

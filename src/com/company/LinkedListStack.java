@@ -55,10 +55,3 @@ public class LinkedListStack<T> {
         return top == null ? null : top.data;
     }
 }
-
-
-
-
-
-
-
